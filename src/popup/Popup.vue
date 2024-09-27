@@ -27,14 +27,16 @@ const toggleDesignMode = () => {
 </script>
 
 <template>
-  <div class="w-80 bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
-    <div class="bg-white p-8 rounded shadow-md max-w-lg text-center mb-4">
-      <h1 class="text-2xl font-bold mb-4">插件介绍</h1>
-      <p class="text-gray-700 text-xl text-justify">这个插件可以让你任意修改网页内容。</p>
+  <div
+    class="w-80 bg-gradient-to-br from-blue-100 to-purple-100 flex flex-col items-center justify-center min-h-screen p-6"
+  >
+    <div class="bg-white p-5 rounded-lg shadow-lg max-w-lg text-center mb-6">
+      <h1 class="text-xl font-bold mb-3 text-blue-600">插件介绍</h1>
+      <p class="text-gray-700 text-sm text-justify">这个插件可以让你任意修改网页内容。</p>
     </div>
-    <!-- 添加开关组件 -->
-    <div class="flex items-center mb-4">
-      <span class="mr-2">编辑模式</span>
+    <!-- 更新开关组件 -->
+    <div class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-md">
+      <span class="text-gray-700 font-medium">编辑模式</span>
       <label class="switch">
         <input type="checkbox" v-model="designModeEnabled" @change="toggleDesignMode" />
         <span class="slider round"></span>
@@ -44,55 +46,32 @@ const toggleDesignMode = () => {
 </template>
 
 <style scoped>
-/* 开关样式 */
+/* 开关样式更新 */
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
+  @apply relative inline-block w-14 h-8;
 }
 
 .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+  @apply opacity-0 w-0 h-0;
 }
 
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
+  @apply absolute cursor-pointer inset-0 bg-gray-300 transition-all duration-300 ease-in-out rounded-full;
 }
 
 .slider:before {
-  position: absolute;
-  content: '';
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: 0.4s;
+  @apply absolute content-[''] h-6 w-6 left-1 bottom-1 bg-white transition-all duration-300 ease-in-out rounded-full;
 }
 
 input:checked + .slider {
-  background-color: #2196f3;
+  @apply bg-blue-500;
 }
 
 input:checked + .slider:before {
-  transform: translateX(26px);
+  @apply transform translate-x-6;
 }
 
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
+input:focus + .slider {
+  @apply ring-2 ring-blue-300;
 }
 </style>
